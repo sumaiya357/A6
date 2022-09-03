@@ -80,14 +80,22 @@ const loadCategory=(id) =>{
             const url=` https://openapi.programming-hero.com/api/news/${id}`
             const res = await fetch(url)
             const data = await res.json();
-            console.log(data.data)
+            displayNewsDetails(data.data[0])
         }
 
         const displayNewsDetails = news =>{
-            console.log(news)
+            const modalTitle= document.getElementById('newsDetailModalLabel')
+               modalTitle.innerText=news.title
+                const newsdetails= document.getElementById('news-details')
+                newsdetails.innerHTML=`
+               
+                <p>Author Name: ${news.author.name ? news.author.name:'no author'}</p>
+                <p>View: ${news.total_view ?news.total_view : 'no view'}</p>`
         }
 
         loadNews()
+
+        // <p>Author Name: ${news.author.name ? news.author.name:'no author'}</p>
 
 
 
