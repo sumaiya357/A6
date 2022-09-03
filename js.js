@@ -96,10 +96,17 @@ const loadCategory=(id) =>{
         
         //--------- Modal -------------
         const loadNewsDetails =async id =>{
+            try{
             const url=` https://openapi.programming-hero.com/api/news/${id}`
             const res = await fetch(url)
             const data = await res.json();
-            displayNewsDetails(data.data[0])
+            displayNewsDetails(data.data[0])}
+            catch(error){
+
+                console.log('inside catch.You got a eror')
+                console.log(error)
+                
+               }
         }
 
         const displayNewsDetails = news =>{
