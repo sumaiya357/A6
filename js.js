@@ -37,12 +37,14 @@ const loadCategory=(id) =>{
             console.log(allnews)
             const maindiv=document.getElementById('display-section')
             maindiv.innerHTML=''
+           
             for(const news of allnews){
     
                 const div= document.createElement('div')
                 div.innerHTML=`
                <div>
-               <div class="row mt-5 border border-black rounded"  >
+               <div onclick="loadNewsDetails('${news._id}')" class="row mt-5 border border-black rounded" data-bs-toggle="modal" data-bs-target="#newsDetailModal"  >
+
                <div class="col-md-4" >
                  <img src="${news.image_url}" class="img-fluid h-100 rounded-start" alt="...">
                </div>
@@ -71,8 +73,37 @@ const loadCategory=(id) =>{
              </div></div>
                 `
                 maindiv.appendChild(div)
-            
-        
+            }
+        }  
+
+        const loadNewsDetails =async id =>{
+            const url=` https://openapi.programming-hero.com/api/news/${id}`
+            const res = await fetch(url)
+            const data = await res.json();
+            console.log(data.data)
+        }
+
+        const displayNewsDetails = news =>{
+            console.log(news)
+        }
+
+        loadNews()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             // const modalTitle= document.getElementById('newsDetailModalLabel')
             //    modalTitle.innerText=news.title
             //     const newsdetails= document.getElementById('news-details')
@@ -80,8 +111,7 @@ const loadCategory=(id) =>{
                
             //     <p>Author Name: ${news.author.name ? news.author.name:'no author'}</p>
             //     <p>View: ${news.total_view ?news.total_view : 'no view'}</p>`
-        }
-        }
+       
     
         // const loadNewsDetails=async id =>{
         //     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
@@ -101,7 +131,7 @@ const loadCategory=(id) =>{
         //     <p>View: ${news2.total_view ?news2.total_view : 'no view'}</p>`
         //}
     
-        loadNews()
+     
 
 
 // const loadCategory=(id) =>{
