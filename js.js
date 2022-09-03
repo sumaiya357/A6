@@ -16,21 +16,34 @@ const displayCategory = categories=>{
        
        const li= document.createElement('li')
        li.classList.add('list-inline-item','text-decoration-none','ms-2')
+
+      
        li.innerHTML=`
        <li onclick=loadCategory('${category.category_id}')>${category.category_name}</li>
+      
+       
        `
 
+        
+
+     
+       
         newsList.appendChild(li)
 
         
     }
 }
 
-// console.log('conected')
+//-------- category fetched---------------
 const loadCategory=(id) =>{
     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
     .then(res=>res.json())
-    .then(data=>displayNews(data.data))}
+    .then(data=>displayNews(data.data))
+
+
+    //-----start loader-----
+    toggleSpinner(true)
+}
     
         const displayNews= allnews=>{
     
@@ -52,7 +65,7 @@ const loadCategory=(id) =>{
                  <div class="card-body">
                    <h5 class="card-title">${news.title
                    }</h5>
-                   <p class="card-text">${news.details.slice(0,10)
+                   <p class="card-text text-truncate" >${news.details
                    }</p>
                    
                    <div class="ms-3 d-flex flex-row ">
@@ -73,9 +86,15 @@ const loadCategory=(id) =>{
              </div></div>
                 `
                 maindiv.appendChild(div)
+                //--------- Stop spiner-------
+
+        toggleSpinner(false)
+       
+
             }
         }  
-
+        
+        //--------- Modal -------------
         const loadNewsDetails =async id =>{
             const url=` https://openapi.programming-hero.com/api/news/${id}`
             const res = await fetch(url)
@@ -91,6 +110,18 @@ const loadCategory=(id) =>{
                
                 <p>Author Name: ${news.author.name ? news.author.name:'no author'}</p>
                 <p>View: ${news.total_view ?news.total_view : 'no view'}</p>`
+        }
+
+        //Spinnner
+
+        const toggleSpinner = isLoading=>{
+            const loaderSection =document.getElementById('loader')
+            if(isLoading){
+                loaderSection.classList.remove('d-none')
+            }
+            else{
+                loaderSection.classList.add('d-none')
+            }
         }
 
         loadNews()
