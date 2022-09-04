@@ -51,7 +51,7 @@ const loadCategory=(id) =>{
 
             //display all category
             document.getElementById('no-found-msg').innerText = `${allnews.length} category found`;
-            
+
             //sorted view
             allnews.sort((a,b)=>{
 
@@ -100,7 +100,7 @@ const loadCategory=(id) =>{
              </div>
              
                 `
-            
+        
 
                
                 maindiv.appendChild(div)
@@ -147,118 +147,6 @@ const loadCategory=(id) =>{
             }
         }
 
-        loadNews()
+        loadNews('https://openapi.programming-hero.com/api/news/category/02')
 
-        // <p>Author Name: ${news.author.name ? news.author.name:'no author'}</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // const modalTitle= document.getElementById('newsDetailModalLabel')
-            //    modalTitle.innerText=news.title
-            //     const newsdetails= document.getElementById('news-details')
-            //     newsdetails.innerHTML=`
-               
-            //     <p>Author Name: ${news.author.name ? news.author.name:'no author'}</p>
-            //     <p>View: ${news.total_view ?news.total_view : 'no view'}</p>`
-       
-    
-        // const loadNewsDetails=async id =>{
-        //     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
-        //     const res = await fetch(url)
-        //     const data = await res.json();
-        //     newsDetails(data)
-        // }
-
-        // const newsDetails=news2 =>{
-        //     console.log(news2)
-        //     const modalTitle= document.getElementById('newsDetailModalLabel')
-        //    modalTitle.innerText=news2.title
-        //     const newsdetails= document.getElementById('news-details')
-        //     newsdetails.innerHTML=`
-           
-        //     <p>Author Name: ${news2.author.name ? news2.author.name:'no author'}</p>
-        //     <p>View: ${news2.total_view ?news2.total_view : 'no view'}</p>`
-        //}
-    
-     
-
-
-// const loadCategory=(id) =>{
-//     fetch(`https://openapi.programming-hero.com/api/news/category/${id}`)
-//     .then(res=>res.json())
-//     .then(data=>displayCategory2(data.data))
-
-// }
-
-
-
-// const displayCategory2 = categories2=>{
-//    console.log(categories2)
-//     const displaySection=document.getElementById('display-section')
-
-//    for(const category2 of categories2){
-//     displaySection.innerHTML=''
-//     const div= document.createElement('div')
-//    // div.classList.add('col')
-//     div.innerHTML=`
-   
-
-//     <div class="row g-0 ">
-//     <div class="col-md-4  ">
-//       <img src="${category2.image_url}"  class="img-fluid h-100 rounded-start" alt="...">
-//     </div>
-//     <div class="col-md-8 card-body">
-    
-//         <h6 class="card-title">${category2.title}</h6>
-//        <p>${category2.details.slice(0,10)
-//        }</p>
-       
-//        <div class="ms-3 d-flex flex-row ">
-//           <span> <img style="height:"100%" src="${category2.author.img}" alt="..." class="rounded-circle" width="50" height="50" ></span>
-//          <div class=" d-flex flex-column me-5">
-//          <span>${category2.author.name}</span>
-//          <span>${category2.author.published_date}</span>
-//          </div>
-//          <div class="ms-5 me-5"><span ><i class="fa-solid fa-eye"></i></span>
-//          <span class="">${category2.total_view}
-//          </span></div>
-//          <span class="ms-5"><i class="fa-solid fa-arrow-right"></i></span>
-//         </div>
       
-//       </div>
-      
-//     </div>
-                
-   
-//     `
-//     // <img src="${category2.image_url
-//     // }" class="card-img-top" alt="...">
-//     // <div class="card-img-top" alt="...">
-//     //             <div class="card-body">
-//     //               <h6 class="card-title">${category2.title}</h6>
-                  
-//                 {/* </div> */}
-//     displaySection.appendChild(div)
-// }
-// }
-
-//loadNews()
-
-
-// const id= category.category_id
-//        //console.log(id)
-//         const name= category.category_name
-//     //   
