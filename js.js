@@ -51,11 +51,21 @@ const loadCategory=(id) =>{
 
             //display all category
             document.getElementById('no-found-msg').innerText = `${allnews.length} category found`;
-
             
+            //sorted view
+            allnews.sort((a,b)=>{
+
+                return b.total_view - a.total_view
+             }
+               )
+
+              //--------- Stop spiner-------
+
+              toggleSpinner(false)
 
             for(const news of allnews){
     
+                
                 //console.log(news)
                 const div= document.createElement('div')
                 div.innerHTML=`
@@ -90,14 +100,11 @@ const loadCategory=(id) =>{
              </div>
              
                 `
-             
-               
+            
 
                
                 maindiv.appendChild(div)
-                //--------- Stop spiner-------
-
-                toggleSpinner(false)
+              
        
 
             }
