@@ -4,33 +4,31 @@ const loadNews = ()=>{
     .then(data=>displayCategory(data.data.news_category
         ))
        
+       
  }
 
 
+
 const displayCategory = categories=>{
-     //console.log(categories)
+     
     const newsList = document.getElementById('news-list')
-    // categories.forEach(category=>{
+    
         for(const category of categories){
-       //console.log(category)
-       
+ 
        const li= document.createElement('li')
        li.classList.add('list-inline-item','text-decoration-none','ms-2')
 
       
        li.innerHTML=`
        <li onclick=loadCategory('${category.category_id}')>${category.category_name}</li>
-      
        
        `
-
-        
-
-     
        
+     
         newsList.appendChild(li)
-
         
+    
+
     }
 }
 
@@ -47,16 +45,22 @@ const loadCategory=(id) =>{
     
         const displayNews= allnews=>{
     
-            console.log(allnews)
+            //console.log(allnews)
             const maindiv=document.getElementById('display-section')
             maindiv.innerHTML=''
-           
+
+            //display all category
+            document.getElementById('no-found-msg').innerText = `${allnews.length} category found`;
+
+            
+
             for(const news of allnews){
     
+                //console.log(news)
                 const div= document.createElement('div')
                 div.innerHTML=`
-               <div>
-               <div onclick="loadNewsDetails('${news._id}')" class="row mt-5 border border-black rounded" data-bs-toggle="modal" data-bs-target="#newsDetailModal"  >
+               
+               <div onclick="loadNewsDetails('${news._id}')" class="row mt-5 border border-success rounded" data-bs-toggle="modal" data-bs-target="#newsDetailModal"  >
 
                <div class="col-md-4" >
                  <img src="${news.image_url}" class="img-fluid h-100 rounded-start" alt="...">
@@ -75,7 +79,7 @@ const loadCategory=(id) =>{
                      <span><small class="text-muted">${news.author.published_date}</small></span>
                      </div>
                      <div class="ms-5 me-5"><span ><i class="fa-solid fa-eye"></i></span>
-                     <span class="">${news.total_view}
+                     <span class="">${news.total_view ?news.total_view : 'no view'}
                      </span></div>
                      <span class="ms-5"><i class="fa-solid fa-arrow-right"></i></span>
                      </div>
@@ -83,12 +87,17 @@ const loadCategory=(id) =>{
  
                   </div>
                </div>
-             </div></div>
+             </div>
+             
                 `
+             
+               
+
+               
                 maindiv.appendChild(div)
                 //--------- Stop spiner-------
 
-        toggleSpinner(false)
+                toggleSpinner(false)
        
 
             }

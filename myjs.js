@@ -2,7 +2,11 @@
 const loadNews=()=>{
 fetch(`https://openapi.programming-hero.com/api/news/category/01`)
     .then(res=>res.json())
-    .then(data=>displayNews(data.data))}
+    .then(data=>displayNews(data.data))
+    const field= document.getElementById('input')
+           
+    field.value=data[0].length
+    }
 
     const displayNews= allnews=>{
 
@@ -28,6 +32,13 @@ fetch(`https://openapi.programming-hero.com/api/news/category/01`)
         </div>
             `
             maindiv.appendChild(div)
+            const form = document.getElementById('inputForm');
+            const input = inputForm.querySelector('input');
+            
+            form.addEventListener('submit', (e) => {
+              const boxInput = input.value;
+              console.log(input.value);
+            });
         }
     }
     const loadNewsdet=async id =>{
